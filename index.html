@@ -512,6 +512,28 @@
     </div>
   </footer>
 
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    window.addEventListener("load", function () {
+      const badHashes = ["", "#contact", "#contact/"];
+
+      if (badHashes.includes(window.location.hash)) {
+        window.history.replaceState(null, "", window.location.pathname + "#home");
+      }
+
+      window.setTimeout(function () {
+        const home = document.getElementById("home");
+        if (home) {
+          home.scrollIntoView({ behavior: "auto", block: "start" });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }, 0);
+    });
+  </script>
   <script src="./assets/app.js"></script>
 </body>
 </html>
